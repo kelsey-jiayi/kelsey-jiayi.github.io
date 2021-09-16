@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## Hey there! I'm Kelsey
 
-You can use the [editor on GitHub](https://github.com/kelsey-jiayi/kelsey-jiayi.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
+I'm a first year applied math master's student at McGill University! My research focuses on machine learning and optimization. 
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
