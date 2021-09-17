@@ -2,31 +2,10 @@
 
 I'm a first year applied math master's student at McGill University! My research focuses on machine learning and optimization. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+### About Me 
 
-### Markdown
+My name is Jiayi Wang 王佳宜. Everyone also calls me Kelsey. I'm originally from Xi'an, China and moved to Montreal four years ago for university. I majored in math and minored in computer science during my undergradute, and now I'm a member of [Oberman lab](https://www.adamoberman.net/oberman-lab.html).
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 ### Jekyll Themes
 
