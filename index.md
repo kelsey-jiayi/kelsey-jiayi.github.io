@@ -1,6 +1,6 @@
 ## Hey there! I'm Kelsey
 
-I'm a first year applied math master's student at McGill University! My research focuses on machine learning and optimization. 
+I'm a first year applied math master's student at McGill University! My research focuses on machine learning. 
 
 ### About Me 
 
