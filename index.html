@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kelsey (Jiayi Wang 王佳宜) — Applied Math M.Sc. student at McGill University, researching machine learning." />
+  <title>Kelsey · 王佳宜</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg:          #fdf8f2;
+      --bg-tint:     #f5ede0;
+      --text:        #1a1210;
+      --text-mid:    #6b5c52;
+      --text-light:  #a8978e;
+      --coral:       #c85638;
+      --coral-soft:  #edd5ca;
+      --sage:        #4d7c6f;
+      --sage-soft:   #c4d9d3;
+      --rule:        rgba(28,20,16,0.12);
+      --rule-strong: rgba(28,20,16,0.22);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 3.5rem;
+      border-bottom: 1px solid var(--rule);
+      opacity: 0;
+      animation: fadeDown 0.5s ease forwards 0.05s;
+    }
+
+    .nav-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.05rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text);
+      letter-spacing: 0.01em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--coral); }
+
+    /* ── Hero ── */
+    .hero-text {
+      padding: 6rem 3.5rem 5rem;
+      display: flex;
+      flex-direction: column;
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    .hero-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards 0.2s;
+    }
+    .hero-kicker::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(3.8rem, 7vw, 6.2rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 0.15em;
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards 0.35s;
+    }
+
+    .hero-name-zh {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--coral);
+      letter-spacing: 0.2em;
+      margin-bottom: 3rem;
+      opacity: 0;
+      animation: fadeUp 0.6s ease forwards 0.5s;
+    }
+
+    .hero-bio {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-mid);
+      max-width: 440px;
+      border-top: 1px solid var(--rule);
+      padding-top: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.65s ease forwards 0.65s;
+    }
+    .hero-bio strong { color: var(--text); font-weight: 400; }
+    .hero-bio a {
+      color: var(--coral);
+      text-decoration: underline;
+      text-decoration-color: var(--coral-soft);
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .hero-bio a:hover { color: var(--sage); }
+
+    /* ── Page content ── */
+    .page-content {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3.5rem;
+    }
+
+    /* ── Section ── */
+    .section {
+      padding: 4.5rem 0;
+      border-top: 1px solid var(--rule);
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 4rem;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-head { padding-top: 0.15rem; }
+
+    .section-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 300;
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      line-height: 1.4;
+      color: var(--text-mid);
+      margin-top: 0.4rem;
+    }
+
+    .section-body {
+      font-size: 1.05rem;
+      font-weight: 300;
+      line-height: 1.85;
+      color: var(--text-mid);
+    }
+    .section-body p + p { margin-top: 1.1em; }
+    .section-body strong { color: var(--text); font-weight: 400; }
+    .section-body a {
+      color: var(--coral);
+      text-decoration: underline;
+      text-decoration-color: var(--coral-soft);
+      text-underline-offset: 3px;
+      transition: color 0.2s;
+    }
+    .section-body a:hover { color: var(--sage); }
+
+    /* ── Tags ── */
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.06em;
+      padding: 0.3em 0.85em;
+      border-radius: 100px;
+    }
+    .tag-coral  { background: #f2d4cb; color: #b84a2a; }
+    .tag-sage   { background: #c6dbd6; color: #3a6b5e; }
+    .tag-amber  { background: #f5e2b8; color: #9a6f1a; }
+    .tag-violet { background: #ddd4f0; color: #6347a8; }
+    .tag-sky    { background: #cce0f0; color: #2a6090; }
+
+    /* ── Contact buttons ── */
+    .contact-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      padding: 0.65em 1.5em;
+      border-radius: 2px;
+      transition: all 0.2s;
+    }
+    .btn-primary { background: var(--coral); color: #fff; }
+    .btn-primary:hover { background: var(--text); }
+    .btn-outline { border: 1px solid var(--rule-strong); color: var(--text-mid); }
+    .btn-outline:hover { border-color: var(--coral); color: var(--coral); }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule-strong);
+      padding: 2.5rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 2rem;
+    }
+    .footer-left {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+    .footer-right {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 780px) {
+      nav { padding: 1.4rem 2rem; }
+      nav .nav-links { display: none; }
+      .hero-text { padding: 3.5rem 2rem 3rem; }
+      .page-content { padding: 0 2rem; }
+      .section { grid-template-columns: 1fr; gap: 1.5rem; }
+      footer { padding: 2rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="nav-wordmark">Kelsey</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="hero-text">
+    <p class="hero-kicker">Applied Math · Machine Learning · McGill</p>
+    <h1 class="hero-name">Kelsey</h1>
+    <p class="hero-name-zh">王佳宜</p>
+    <p class="hero-bio">
+      First-year master's student at <strong>McGill University</strong>,
+      studying applied mathematics and machine learning.
+      Member of the <a href="https://www.adamoberman.net/oberman-lab.html">Oberman Lab</a>.
+    </p>
+  </div>
+
+  <div class="page-content">
+
+    <div class="section" id="about">
+      <div class="section-head">
+        <p class="section-label">01</p>
+        <h2 class="section-title">About me</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          Originally from <strong>Xi'an, China</strong> — I moved to Montreal four years ago
+          for university, where I majored in mathematics and minored in computer science.
+        </p>
+        <p>
+          I'm now a member of the Oberman Lab at McGill, thinking hard about
+          what PDEs, optimization, and deep learning have to say to each other.
+        </p>
+        <div class="tag-row">
+          <span class="tag tag-coral">PDEs</span>
+          <span class="tag tag-sage">Optimization</span>
+          <span class="tag tag-amber">Deep Learning</span>
+          <span class="tag tag-violet">Applied Math</span>
+          <span class="tag tag-sky">Machine Learning</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section" id="contact">
+      <div class="section-head">
+        <p class="section-label">02</p>
+        <h2 class="section-title">Get in touch</h2>
+      </div>
+      <div class="section-body">
+        <p>
+          Always happy to connect — whether it's research, collaborations,
+          or just a good conversation.
+        </p>
+        <div class="contact-row">
+          <a href="https://www.linkedin.com/in/kelsey-jiayi-wang/" class="btn btn-primary">↗ LinkedIn</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-left">Kelsey · 王佳宜</span>
+    <span class="footer-right">McGill University · Montreal · 2025</span>
+  </footer>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    sections.forEach(s => observer.observe(s));
+  </script>
+
+</body>
+</html>
