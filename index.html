@@ -406,8 +406,6 @@
     }
 
     .hobby-card {
-      display: block;
-      text-decoration: none;
       padding: 2.2rem 2rem 2rem;
       border-radius: 10px;
       position: relative;
@@ -416,12 +414,6 @@
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      transition: transform 0.25s ease, box-shadow 0.25s ease;
-    }
-
-    .hobby-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     }
 
     /* Large background emoji/icon */
@@ -432,28 +424,6 @@
       right: 1.6rem;
       font-size: 2.4rem;
       opacity: 0.45;
-      transition: opacity 0.25s, transform 0.25s;
-    }
-
-    .hobby-card:hover::before {
-      opacity: 0.7;
-      transform: scale(1.1) rotate(-5deg);
-    }
-
-    /* Arrow indicator */
-    .hobby-card::after {
-      content: '↗';
-      position: absolute;
-      top: 1.5rem;
-      left: 2rem;
-      font-size: 0.75rem;
-      opacity: 0;
-      transition: opacity 0.2s;
-      font-family: 'JetBrains Mono', monospace;
-    }
-
-    .hobby-card:hover::after {
-      opacity: 0.5;
     }
 
     .hobby-card-title {
@@ -750,22 +720,22 @@
         <h2 class="block-title">Outside <em>work</em></h2>
       </div>
       <div class="hobby-grid">
-        <a href="hobbies/tennis.html" class="hobby-card hc-sage" data-emoji="🎾">
+        <div class="hobby-card hc-sage" data-emoji="🎾">
           <p class="hobby-card-title">Tennis</p>
           <p class="hobby-card-desc">On courts, in all weather.</p>
-        </a>
-        <a href="hobbies/climbing.html" class="hobby-card hc-amber" data-emoji="🧗">
+        </div>
+        <div class="hobby-card hc-amber" data-emoji="🧗">
           <p class="hobby-card-title">Top Rope</p>
-          <p class="hobby-card-desc">Problems worth solving.</p>
-        </a>
-        <a href="hobbies/techno.html" class="hobby-card hc-dark" data-emoji="🎧">
+          <p class="hobby-card-desc">Got into top rope recently!</p>
+        </div>
+        <div class="hobby-card hc-dark" data-emoji="🎧">
           <p class="hobby-card-title">Techno</p>
-          <p class="hobby-card-desc">The architecture of sound.</p>
-        </a>
-        <a href="hobbies/travel.html" class="hobby-card hc-sky" data-emoji="✈️">
+          <p class="hobby-card-desc">Say no more.</p>
+        </div>
+        <div class="hobby-card hc-sky" data-emoji="✈️">
           <p class="hobby-card-title">Traveling</p>
-          <p class="hobby-card-desc">New cities, same curiosity.</p>
-        </a>
+          <p class="hobby-card-desc">Next destination will be Albania:)</p>
+        </div>
       </div>
     </div>
 
@@ -780,6 +750,7 @@
       </p>
       <div class="contact-row">
         <a href="https://www.linkedin.com/in/kelsey-jiayi-wang/" class="btn btn-primary">↗ LinkedIn</a>
+        <a href="https://www.instagram.com/kelseybiubiubiu/" class="btn btn-primary">↗ Instagram</a>
       </div>
     </div>
 
