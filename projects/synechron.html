@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Synechron Projects — Kelsey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    :root {
+      --bg: #fdf8f2;
+      --bg-tint: #f7f0e6;
+      --text: #1a1210;
+      --text-mid: #6b5c52;
+      --text-light: #a8978e;
+      --coral: #c85638;
+      --coral-soft: #edd5ca;
+      --rule: rgba(28, 20, 16, 0.1);
+      --rule-strong: rgba(28, 20, 16, 0.2);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── Nav ── */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.6rem 3.5rem;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .nav-back {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-mid);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: color 0.2s;
+    }
+
+    .nav-back:hover {
+      color: var(--coral);
+    }
+
+    .nav-wordmark {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text);
+    }
+
+    /* ── Page header ── */
+    .page-header {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5.5rem 3.5rem 4.5rem;
+    }
+
+    .header-kicker {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .header-kicker::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--coral);
+      flex-shrink: 0;
+    }
+
+    .header-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: clamp(2.8rem, 6vw, 4.8rem);
+      line-height: 1.0;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-bottom: 2rem;
+    }
+
+    .header-title em {
+      font-style: italic;
+      color: var(--coral);
+    }
+
+    .header-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--rule);
+      flex-wrap: wrap;
+    }
+
+    .header-meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .meta-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.55rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    .meta-value {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--text-mid);
+    }
+
+    .meta-divider {
+      width: 1px;
+      height: 32px;
+      background: var(--rule-strong);
+      align-self: center;
+    }
+
+    /* ── Project list ── */
+    .project-list {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 3.5rem 6rem;
+    }
+
+    /* ── Project card ── */
+    .project-card {
+      position: relative;
+      padding: 4rem 0 4rem 0;
+      border-top: 1px solid var(--rule);
+    }
+
+    .project-card:last-child {
+      border-bottom: 1px solid var(--rule);
+    }
+
+    /* Large faded project number */
+    .project-index {
+      position: absolute;
+      top: 2.8rem;
+      right: 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 7rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--text);
+      opacity: 0.04;
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -0.04em;
+    }
+
+    .card-header {
+      margin-bottom: 2rem;
+    }
+
+    .card-name-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      margin-bottom: 0.6rem;
+      flex-wrap: wrap;
+    }
+
+    .card-name {
+      font-family: 'Playfair Display', serif;
+      font-weight: 400;
+      font-size: 1.9rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      line-height: 1.1;
+    }
+
+    .card-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--coral);
+      background: var(--coral-soft);
+      padding: 0.3em 0.85em;
+      border-radius: 100px;
+      white-space: nowrap;
+      align-self: flex-start;
+      margin-top: 0.35rem;
+    }
+
+    .card-context {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    /* Two-column body */
+    .card-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      margin-bottom: 2rem;
+    }
+
+    .card-desc {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.82;
+      color: var(--text-mid);
+    }
+
+    .card-highlights {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .card-highlights li {
+      font-size: 0.92rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-mid);
+      padding-left: 1.3em;
+      position: relative;
+    }
+
+    .card-highlights li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--coral);
+      opacity: 0.6;
+    }
+
+    /* Tech stack */
+    .card-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--rule);
+    }
+
+    .stack-pill {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.06em;
+      padding: 0.28em 0.85em;
+      border-radius: 100px;
+      background: var(--bg-tint);
+      color: var(--text-mid);
+      border: 1px solid var(--rule-strong);
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--rule-strong);
+      padding: 2.5rem 3.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-left {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .footer-back {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-back:hover {
+      color: var(--coral);
+    }
+
+    /* ── Scroll reveal ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+
+      nav,
+      .page-header,
+      .project-list,
+      footer {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .card-body {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+
+      .card-name-row {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .header-meta-row {
+        gap: 1.2rem;
+      }
+
+      .meta-divider {
+        display: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← Back</a>
+    <span class="nav-wordmark">Kelsey</span>
+  </nav>
+
+  <div class="page-header">
+    <p class="header-kicker">Work experience · 02</p>
+    <h1 class="header-title">Synechron —<br /><em>Selected projects</em></h1>
+    <div class="header-meta-row">
+      <div class="header-meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Consultant & ML Engineer</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="header-meta-item">
+        <span class="meta-label">Period</span>
+        <span class="meta-value">Sept 2024 — Mar 2026</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="header-meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Montreal, Canada</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="project-list">
+
+    <!-- Project 1 -->
+    <div class="project-card reveal">
+      <span class="project-index" aria-hidden="true">01</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">trAIn — AI Call Agent Trainer</h2>
+          <span class="card-tag">AWS · Full-stack</span>
+        </div>
+        <p class="card-context">Developer &nbsp;·&nbsp; Client: Aegon</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          Real-time AI platform simulating live customer calls for training call center agents.
+          Agents speak to AI-powered personas — frustrated, calm, confused — and receive instant
+          performance feedback across five dimensions: empathy, problem-solving, professionalism,
+          de-escalation, and follow-through.
+        </p>
+        <ul class="card-highlights">
+          <li>Reduced end-to-end response latency from ~15s to sub-3s via async processing and WebSocket streaming.</li>
+          <li>Built a 5-dimension LLM evaluation framework with custom prompt engineering and agent scoring.</li>
+          <li>Containerized with Docker; CI/CD via AWS CodePipeline + CodeBuild.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">FastAPI</span>
+        <span class="stack-pill">React</span>
+        <span class="stack-pill">WebSockets</span>
+        <span class="stack-pill">AWS Transcribe</span>
+        <span class="stack-pill">Amazon Bedrock</span>
+        <span class="stack-pill">AWS Polly</span>
+        <span class="stack-pill">Docker</span>
+        <span class="stack-pill">Python</span>
+      </div>
+    </div>
+
+    <!-- Project 2 -->
+    <div class="project-card reveal">
+      <span class="project-index" aria-hidden="true">02</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">Launchpad — AI Deployment Platform</h2>
+          <span class="card-tag">AWS · Infrastructure</span>
+        </div>
+        <p class="card-context">ML Engineer &nbsp;·&nbsp; Client: Aegon</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          Modular AWS-based platform for rapidly deploying AI solutions for enterprise clients.
+          Designed around a multi-account architecture (Core, LOB, CI/CD) with centralized
+          authentication and environment provisioning.
+        </p>
+        <ul class="card-highlights">
+          <li>Documented Cognito authentication design across account tiers — Core requires Cognito; LOB and CI/CD use
+            cross-account IAM roles.</li>
+          <li>Contributed to infrastructure provisioning templates and Active Directory integration for client
+            onboarding.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">AWS Cognito</span>
+        <span class="stack-pill">AWS EC2</span>
+        <span class="stack-pill">IAM</span>
+        <span class="stack-pill">AWS CodePipeline</span>
+        <span class="stack-pill">Multi-account AWS</span>
+      </div>
+    </div>
+
+    <!-- Project 3 -->
+    <div class="project-card reveal">
+      <span class="project-index" aria-hidden="true">03</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">BuyProperly — Investment Deal Recommender</h2>
+          <span class="card-tag">ML · Recommender System</span>
+        </div>
+        <p class="card-context">ML Engineer &nbsp;·&nbsp; Client: BuyProperly</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          ML recommendation system matching investors to alternative investment deals — real estate,
+          private equity — based on risk profile, income, investment horizon, and behavioral signals.
+          Built two recommendation pipelines plus a secondary model predicting investment likelihood.
+        </p>
+        <ul class="card-highlights">
+          <li>Trained KMeans clustering to segment 607 investors into 5 risk tiers with continuous scores from centroid
+            distances.</li>
+          <li>Built content-based filtering via deal similarity and collaborative filtering via matrix factorization on
+            a 265×26 interaction matrix.</li>
+          <li>Handled cold-start with demographic-based user similarity for investors with no history.</li>
+          <li>Feature engineering from sparse data — 5,597 rows with up to 94% missingness on key columns.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">scikit-learn</span>
+        <span class="stack-pill">KMeans</span>
+        <span class="stack-pill">Matrix factorization</span>
+        <span class="stack-pill">Content-based filtering</span>
+        <span class="stack-pill">Collaborative filtering</span>
+        <span class="stack-pill">pandas</span>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-left">Kelsey · 王佳宜</span>
+    <a href="../index.html" class="footer-back">← Back to home</a>
+  </footer>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
+      });
+    }, { threshold: 0.06 });
+    reveals.forEach(r => observer.observe(r));
+  </script>
+
+</body>
+
+</html>
