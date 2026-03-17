@@ -1,29 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kelsey (Jiayi Wang 王佳宜) — Machine Learning Engineer at Synechron. M.Sc. McGill University. AI Fairness researcher." />
+  <meta name="description"
+    content="Kelsey (Jiayi Wang 王佳宜) — Machine Learning Engineer at Synechron. M.Sc. McGill University. AI Fairness researcher." />
   <title>Kelsey · 王佳宜</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
-      --bg:          #fdf8f2;
-      --text:        #1a1210;
-      --text-mid:    #6b5c52;
-      --text-light:  #a8978e;
-      --coral:       #c85638;
-      --coral-soft:  #edd5ca;
-      --sage:        #4d7c6f;
-      --rule:        rgba(28,20,16,0.1);
-      --rule-strong: rgba(28,20,16,0.2);
+      --bg: #fdf8f2;
+      --text: #1a1210;
+      --text-mid: #6b5c52;
+      --text-light: #a8978e;
+      --coral: #c85638;
+      --coral-soft: #edd5ca;
+      --sage: #4d7c6f;
+      --rule: rgba(28, 20, 16, 0.1);
+      --rule-strong: rgba(28, 20, 16, 0.2);
     }
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { font-size: 16px; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+    }
 
     body {
       background: var(--bg);
@@ -40,13 +53,20 @@
       padding: 1.6rem 3.5rem;
       border-bottom: 1px solid var(--rule);
     }
+
     .nav-wordmark {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: 1.05rem;
       color: var(--text);
     }
-    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
     .nav-links a {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.62rem;
@@ -56,13 +76,17 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--coral); }
+
+    .nav-links a:hover {
+      color: var(--coral);
+    }
 
     .hero {
       max-width: 860px;
       margin: 0 auto;
       padding: 6rem 3.5rem 5rem;
     }
+
     .hero-kicker {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.62rem;
@@ -74,12 +98,16 @@
       align-items: center;
       gap: 0.8rem;
     }
+
     .hero-kicker::before {
       content: '';
       display: block;
-      width: 24px; height: 1px;
-      background: var(--coral); flex-shrink: 0;
+      width: 24px;
+      height: 1px;
+      background: var(--coral);
+      flex-shrink: 0;
     }
+
     .hero-name {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
@@ -89,6 +117,7 @@
       color: var(--text);
       margin-bottom: 0.15em;
     }
+
     .hero-name-zh {
       font-family: 'Playfair Display', serif;
       font-size: 1.3rem;
@@ -97,6 +126,7 @@
       letter-spacing: 0.2em;
       margin-bottom: 3rem;
     }
+
     .hero-bio {
       font-size: 1.05rem;
       line-height: 1.8;
@@ -105,9 +135,17 @@
       border-top: 1px solid var(--rule);
       padding-top: 2rem;
     }
-    .hero-bio strong { color: var(--text); font-weight: 400; }
 
-    .page { max-width: 860px; margin: 0 auto; padding: 0 3.5rem; }
+    .hero-bio strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 3.5rem;
+    }
 
     .block {
       position: relative;
@@ -117,13 +155,19 @@
       transform: translateY(24px);
       transition: opacity 0.75s ease, transform 0.75s ease;
     }
-    .block.visible { opacity: 1; transform: translateY(0); }
+
+    .block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     .block-number {
       position: absolute;
-      top: 3.2rem; left: -0.5rem;
+      top: 3.2rem;
+      left: -0.5rem;
       font-family: 'Playfair Display', serif;
-      font-size: 9rem; font-weight: 700;
+      font-size: 9rem;
+      font-weight: 700;
       line-height: 1;
       color: var(--text);
       opacity: 0.04;
@@ -137,6 +181,7 @@
       gap: 1.2rem;
       margin-bottom: 3rem;
     }
+
     .block-label {
       font-family: 'JetBrains Mono', monospace;
       font-size: 0.6rem;
@@ -144,6 +189,7 @@
       text-transform: uppercase;
       color: var(--text-light);
     }
+
     .block-title {
       font-family: 'Playfair Display', serif;
       font-weight: 400;
@@ -151,42 +197,206 @@
       letter-spacing: -0.01em;
       color: var(--text);
     }
-    .block-title em { font-style: italic; color: var(--coral); }
+
+    .block-title em {
+      font-style: italic;
+      color: var(--coral);
+    }
 
     /* About */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; }
-    .about-text { font-size: 1.05rem; line-height: 1.85; color: var(--text-mid); }
-    .about-text p + p { margin-top: 1em; }
-    .about-text strong { color: var(--text); font-weight: 400; }
-    .tag-row { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 1.6rem; }
-    .tag { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; letter-spacing: 0.06em; padding: 0.28em 0.85em; border-radius: 100px; }
-    .tag-coral  { background: #f2d4cb; color: #b84a2a; }
-    .tag-sage   { background: #c6dbd6; color: #3a6b5e; }
-    .tag-amber  { background: #f5e2b8; color: #9a6f1a; }
-    .tag-violet { background: #ddd4f0; color: #6347a8; }
-    .tag-sky    { background: #cce0f0; color: #2a6090; }
-    .tag-rose   { background: #f5d0dc; color: #9b2c4a; }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+    }
+
+    .about-text {
+      font-size: 1.05rem;
+      line-height: 1.85;
+      color: var(--text-mid);
+    }
+
+    .about-text p+p {
+      margin-top: 1em;
+    }
+
+    .about-text strong {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.45rem;
+      margin-top: 1.6rem;
+    }
+
+    .tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      padding: 0.28em 0.85em;
+      border-radius: 100px;
+    }
+
+    .tag-coral {
+      background: #f2d4cb;
+      color: #b84a2a;
+    }
+
+    .tag-sage {
+      background: #c6dbd6;
+      color: #3a6b5e;
+    }
+
+    .tag-amber {
+      background: #f5e2b8;
+      color: #9a6f1a;
+    }
+
+    .tag-violet {
+      background: #ddd4f0;
+      color: #6347a8;
+    }
+
+    .tag-sky {
+      background: #cce0f0;
+      color: #2a6090;
+    }
+
+    .tag-rose {
+      background: #f5d0dc;
+      color: #9b2c4a;
+    }
 
     /* Timeline */
-    .timeline { display: flex; flex-direction: column; position: relative; }
-    .timeline::before { content: ''; position: absolute; left: 0; top: 8px; bottom: 8px; width: 1px; background: var(--rule-strong); }
-    .tl-item { display: grid; grid-template-columns: 180px 1fr; gap: 2.5rem; padding: 0 0 3rem 0; position: relative; }
-    .tl-item:last-child { padding-bottom: 0; }
-    .tl-item::before { content: ''; position: absolute; left: -4px; top: 8px; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 1.5px solid var(--coral); }
-    .tl-meta { padding-left: 1.8rem; }
-    .tl-date { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); margin-bottom: 0.4rem; line-height: 1.5; }
-    .tl-org { font-family: 'Playfair Display', serif; font-size: 1rem; font-weight: 500; color: var(--text); line-height: 1.3; }
-    .tl-location { font-size: 0.75rem; color: var(--text-light); margin-top: 0.2rem; }
-    .tl-role { font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--coral); margin-bottom: 0.7rem; }
-    .tl-desc { font-size: 1rem; line-height: 1.8; color: var(--text-mid); }
-    .tl-desc li { list-style: none; padding-left: 1.2em; position: relative; margin-bottom: 0.4em; }
-    .tl-desc li::before { content: '—'; position: absolute; left: 0; color: var(--text-light); }
+    .timeline {
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      bottom: 8px;
+      width: 1px;
+      background: var(--rule-strong);
+    }
+
+    .tl-item {
+      display: grid;
+      grid-template-columns: 180px 1fr;
+      gap: 2.5rem;
+      padding: 0 0 3rem 0;
+      position: relative;
+    }
+
+    .tl-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .tl-item::before {
+      content: '';
+      position: absolute;
+      left: -4px;
+      top: 8px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1.5px solid var(--coral);
+    }
+
+    .tl-meta {
+      padding-left: 1.8rem;
+    }
+
+    .tl-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+      margin-bottom: 0.4rem;
+      line-height: 1.5;
+    }
+
+    .tl-org {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      line-height: 1.3;
+    }
+
+    .tl-location {
+      font-size: 0.75rem;
+      color: var(--text-light);
+      margin-top: 0.2rem;
+    }
+
+    .tl-role {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 0.7rem;
+    }
+
+    .tl-desc {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-mid);
+    }
+
+    .tl-desc li {
+      list-style: none;
+      padding-left: 1.2em;
+      position: relative;
+      margin-bottom: 0.4em;
+    }
+
+    .tl-desc li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--text-light);
+    }
 
     /* Publication */
-    .pub-item { padding: 1.8rem 2rem; border: 1px solid var(--rule); border-left: 3px solid var(--coral); border-radius: 0 4px 4px 0; }
-    .pub-title { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: var(--text); margin-bottom: 0.4rem; }
-    .pub-meta { font-family: 'JetBrains Mono', monospace; font-size: 0.62rem; letter-spacing: 0.1em; color: var(--text-light); margin-bottom: 0.7rem; }
-    .pub-desc { font-size: 0.92rem; line-height: 1.7; color: var(--text-mid); }
+    .pub-item {
+      padding: 1.8rem 2rem;
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--coral);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .pub-title {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .pub-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: var(--text-light);
+      margin-bottom: 0.7rem;
+    }
+
+    .pub-desc {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      color: var(--text-mid);
+    }
 
     /* ── Hobby grid — 2×2 ── */
     .hobby-grid {
@@ -208,33 +418,43 @@
       justify-content: flex-end;
       transition: transform 0.25s ease, box-shadow 0.25s ease;
     }
+
     .hobby-card:hover {
       transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
     }
 
     /* Large background emoji/icon */
     .hobby-card::before {
       content: attr(data-emoji);
       position: absolute;
-      top: 1.4rem; right: 1.6rem;
+      top: 1.4rem;
+      right: 1.6rem;
       font-size: 2.4rem;
       opacity: 0.45;
       transition: opacity 0.25s, transform 0.25s;
     }
-    .hobby-card:hover::before { opacity: 0.7; transform: scale(1.1) rotate(-5deg); }
+
+    .hobby-card:hover::before {
+      opacity: 0.7;
+      transform: scale(1.1) rotate(-5deg);
+    }
 
     /* Arrow indicator */
     .hobby-card::after {
       content: '↗';
       position: absolute;
-      top: 1.5rem; left: 2rem;
+      top: 1.5rem;
+      left: 2rem;
       font-size: 0.75rem;
       opacity: 0;
       transition: opacity 0.2s;
       font-family: 'JetBrains Mono', monospace;
     }
-    .hobby-card:hover::after { opacity: 0.5; }
+
+    .hobby-card:hover::after {
+      opacity: 0.5;
+    }
 
     .hobby-card-title {
       font-family: 'Playfair Display', serif;
@@ -243,6 +463,7 @@
       line-height: 1.2;
       margin-bottom: 0.4rem;
     }
+
     .hobby-card-desc {
       font-family: 'DM Sans', sans-serif;
       font-size: 0.82rem;
@@ -251,44 +472,139 @@
       opacity: 0.7;
     }
 
-    .hc-sage   { background: #d4e8e2; color: #1e4d42; }
-    .hc-amber  { background: #f0e0c0; color: #5c3a0a; }
-    .hc-dark   { background: #1e1a2e; color: #e8e0f8; }
-    .hc-sky    { background: #d0e8f8; color: #0f3a5c; }
+    .hc-sage {
+      background: #d4e8e2;
+      color: #1e4d42;
+    }
+
+    .hc-amber {
+      background: #f0e0c0;
+      color: #5c3a0a;
+    }
+
+    .hc-dark {
+      background: #1e1a2e;
+      color: #e8e0f8;
+    }
+
+    .hc-sky {
+      background: #d0e8f8;
+      color: #0f3a5c;
+    }
 
     /* Contact */
     .btn {
-      display: inline-flex; align-items: center; gap: 0.45rem;
-      font-family: 'JetBrains Mono', monospace; font-size: 0.68rem;
-      letter-spacing: 0.1em; text-decoration: none;
-      padding: 0.65em 1.5em; border-radius: 2px; transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      padding: 0.65em 1.5em;
+      border-radius: 2px;
+      transition: all 0.2s;
     }
-    .btn-primary { background: var(--coral); color: #fff; }
-    .btn-primary:hover { background: var(--text); }
-    .contact-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 1.8rem; }
+
+    .btn-primary {
+      background: var(--coral);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: var(--text);
+    }
+
+    .contact-row {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.8rem;
+    }
 
     footer {
       border-top: 1px solid var(--rule-strong);
       padding: 2.5rem 3.5rem;
-      display: flex; justify-content: space-between; align-items: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       margin-top: 2rem;
     }
-    .footer-left { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: var(--text-light); }
-    .footer-right { font-family: 'JetBrains Mono', monospace; font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-light); }
 
-    @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes fadeDown { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: translateY(0); } }
+    .footer-left {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--text-light);
+    }
+
+    .footer-right {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-light);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeDown {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
     @media (max-width: 700px) {
-      nav { padding: 1.4rem 1.5rem; }
-      nav .nav-links { display: none; }
-      .hero, .page { padding-left: 1.5rem; padding-right: 1.5rem; }
-      .about-grid, .hobby-grid { grid-template-columns: 1fr; }
-      .tl-item { grid-template-columns: 1fr; gap: 0.5rem; }
-      footer { padding: 2rem 1.5rem; flex-direction: column; gap: 0.5rem; align-items: flex-start; }
+      nav {
+        padding: 1.4rem 1.5rem;
+      }
+
+      nav .nav-links {
+        display: none;
+      }
+
+      .hero,
+      .page {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      .about-grid,
+      .hobby-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .tl-item {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      footer {
+        padding: 2rem 1.5rem;
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: flex-start;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <nav>
@@ -308,8 +624,7 @@
     <p class="hero-name-zh">王佳宜</p>
     <p class="hero-bio">
       Machine Learning Engineer & Consultant at <strong>Synechron</strong>.
-      M.Sc. from <strong>McGill University</strong> (Oberman Lab), thesis on AI fairness.
-      Reviewer for ICML and NeurIPS workshops.
+      M.Sc. from <strong>McGill University</strong> (Mila).
     </p>
   </div>
 
@@ -323,8 +638,11 @@
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <p>Originally from <strong>Xi'an, China</strong> — I moved to Montreal for university, completing a B.S. in Mathematics and an M.Sc. in Mathematics & Statistics at McGill, researching deep learning and AI fairness at the Oberman Lab.</p>
-          <p>I now build RAG pipelines, agentic AI workflows, and full-stack ML systems for financial services clients at Synechron.</p>
+          <p>Originally from <strong>Xi'an, China</strong> — I moved to Montreal for university, completing a B.S. in
+            Mathematics and an M.Sc. in Mathematics & Statistics at McGill, researching deep learning and AI fairness at
+            the Oberman Lab.</p>
+          <p>I now build RAG pipelines, agentic AI workflows, and full-stack ML systems for financial services clients
+            at Synechron.</p>
         </div>
         <div>
           <div class="tag-row">
@@ -348,14 +666,15 @@
       <div class="timeline">
         <div class="tl-item">
           <div class="tl-meta">
-            <p class="tl-date">Sept 2024 — Present</p>
+            <p class="tl-date">Sept 2024 — Mar 2026</p>
             <p class="tl-org">Synechron</p>
             <p class="tl-location">Montreal, Canada</p>
           </div>
           <div class="tl-content">
             <p class="tl-role">Consultant & ML Engineer</p>
             <ul class="tl-desc">
-              <li>Built reusable RAG pipelines and agentic AI workflows, standardizing ML patterns across financial services projects.</li>
+              <li>Built reusable RAG pipelines and agentic AI workflows, standardizing ML patterns across financial
+                services projects.</li>
               <li>Architected an AI-powered call center training platform — cut ML inference from 15s to under 3s.</li>
               <li>Contributed to RFP responses covering AI governance, regulatory compliance, and bias mitigation.</li>
             </ul>
@@ -418,7 +737,8 @@
       <div class="pub-item">
         <p class="pub-title">Adagrad Promotes Diffuse Solutions In Overparameterized Regimes</p>
         <p class="pub-meta">A. Rambidis, J. Wang &nbsp;·&nbsp; OPT Workshop at NeurIPS 2023</p>
-        <p class="pub-desc">Theoretical and empirical study showing that Adagrad promotes more diffuse solutions in over-parameterized settings, offering potential advantages for deep learning optimization.</p>
+        <p class="pub-desc">Theoretical and empirical study showing that Adagrad promotes more diffuse solutions in
+          over-parameterized settings, offering potential advantages for deep learning optimization.</p>
       </div>
     </div>
 
@@ -481,4 +801,5 @@
   </script>
 
 </body>
+
 </html>
