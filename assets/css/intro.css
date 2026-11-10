@@ -1,7 +1,7 @@
 /* Full-screen intro on the home page.
    Without WebGL it is a plain centred name followed by the statement.
-   When assets/js/intro.js starts, it adds .gl-ready to <html>: the intro becomes
-   a tall scroll track with a pinned stage, and the name is drawn on the canvas. */
+   With WebGL the intro becomes a tall scroll track with a pinned stage, and the
+   name is drawn on the canvas (see "Scene mode" below). */
 
 body.has-intro nav {
   position: fixed;
@@ -118,41 +118,65 @@ body.has-intro nav {
   100% { transform: scaleY(1) translateY(14px); opacity: 0; }
 }
 
-/* ── WebGL running ── */
-.gl-ready .intro {
+/* ── Scene mode ──
+   .gl        set at page start when the browser supports WebGL: pinned layout, plain name.
+   .gl-ready  set once the scene has drawn: the canvas takes over from the plain name. */
+.gl .intro {
   height: 320vh;
 }
 
-.gl-ready .intro-stage {
+.gl .intro-stage {
   position: sticky;
   top: 0;
   height: 100vh;
   height: 100svh;
   min-height: 0;
   padding: 0 1.5rem;
+  --name-size: min(29vw, 30svh);
 }
 
-.gl-ready .intro-canvas,
-.gl-ready .intro-hint {
+.gl .intro-canvas,
+.gl .intro-hint {
   display: block;
+}
+
+.gl .intro-canvas {
+  opacity: 0;
 }
 
 .gl-ready .intro-canvas {
   opacity: var(--canvas-opacity, 1);
 }
 
-/* The canvas draws the name, so the real heading stays for screen readers only. */
-.gl-ready .intro-name,
-.gl-ready .intro-name-zh {
+/* The plain name sits where the canvas will draw it and is swapped out at once.
+   It stays in the page for screen readers and search engines. */
+.gl .intro-name,
+.gl .intro-name-zh {
   position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
+  left: 0;
+  right: 0;
+  margin: 0;
 }
 
-.gl-ready .intro-kicker {
+.gl .intro-name {
+  top: 50%;
+  transform: translateY(-58%);
+  font-size: var(--name-size);
+  line-height: 1;
+}
+
+.gl .intro-name-zh {
+  top: calc(50% + var(--name-size) * 0.36);
+  font-size: max(calc(var(--name-size) * 0.13), 1.8svh);
+  padding-left: 0.5em;
+}
+
+.gl-ready .intro-name,
+.gl-ready .intro-name-zh {
+  opacity: 0;
+}
+
+.gl .intro-kicker {
   position: absolute;
   top: 6.4rem;
   left: 0;
@@ -160,12 +184,12 @@ body.has-intro nav {
   margin: 0;
 }
 
-.gl-ready .intro-kicker,
-.gl-ready .intro-hint {
+.gl .intro-kicker,
+.gl .intro-hint {
   opacity: var(--chrome-opacity, 1);
 }
 
-.gl-ready .intro-statement {
+.gl .intro-statement {
   position: relative;
   margin-top: 0;
   opacity: var(--statement-opacity, 0);
@@ -174,8 +198,8 @@ body.has-intro nav {
 
 /* Phones held sideways: too short for the labels around the name. */
 @media (max-height: 480px) {
-  .gl-ready .intro-kicker,
-  .gl-ready .intro-hint {
+  .gl .intro-kicker,
+  .gl .intro-hint {
     display: none;
   }
 

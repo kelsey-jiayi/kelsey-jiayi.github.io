@@ -16,12 +16,15 @@
   <link rel="stylesheet" href="assets/css/home.css" />
   <link rel="stylesheet" href="assets/css/glass.css" />
   <link rel="stylesheet" href="assets/css/intro.css" />
-  <script type="importmap">
-    {
-      "imports": {
-        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
-        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
-      }
+  <script>
+    // Set up the intro layout before first paint; fall back to the plain intro
+    // if the scene has not started within 5 seconds.
+    if ('WebGLRenderingContext' in window) {
+      document.documentElement.classList.add('gl');
+      setTimeout(function () {
+        var root = document.documentElement;
+        if (!root.classList.contains('gl-ready')) root.classList.remove('gl');
+      }, 5000);
     }
   </script>
   <script type="module" src="assets/js/intro.js"></script>
