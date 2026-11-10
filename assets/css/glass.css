@@ -1,0 +1,144 @@
+/* Glass layer: a slow colour backdrop behind the page, and frosted panels on top.
+   Loaded after the page stylesheet, so removing this file restores the flat look. */
+
+:root {
+  --glass-bg: rgba(255, 255, 255, 0.38);
+  --glass-edge: rgba(255, 255, 255, 0.7);
+  --glass-shadow: 0 10px 40px rgba(90, 50, 30, 0.09);
+  --glass-blur: blur(20px) saturate(170%);
+}
+
+/* ── Backdrop: two drifting layers of soft colour ── */
+body::before,
+body::after {
+  content: '';
+  position: fixed;
+  inset: -25%;
+  z-index: -1;
+  pointer-events: none;
+  filter: blur(70px);
+  will-change: transform;
+}
+
+body::before {
+  background:
+    radial-gradient(circle at 18% 22%, rgba(200, 86, 56, 0.34), transparent 34%),
+    radial-gradient(circle at 80% 68%, rgba(77, 124, 111, 0.32), transparent 36%);
+  animation: drift-a 38s ease-in-out infinite alternate;
+}
+
+body::after {
+  background:
+    radial-gradient(circle at 76% 16%, rgba(240, 190, 90, 0.36), transparent 32%),
+    radial-gradient(circle at 26% 80%, rgba(140, 110, 210, 0.26), transparent 34%);
+  animation: drift-b 52s ease-in-out infinite alternate;
+}
+
+@keyframes drift-a {
+  from { transform: translate3d(-4%, -3%, 0) rotate(0deg) scale(1); }
+  to   { transform: translate3d(6%, 5%, 0) rotate(14deg) scale(1.12); }
+}
+
+@keyframes drift-b {
+  from { transform: translate3d(5%, 4%, 0) rotate(0deg) scale(1.08); }
+  to   { transform: translate3d(-6%, -5%, 0) rotate(-12deg) scale(1); }
+}
+
+/* ── Frosted panels ── */
+nav,
+.about-grid > div:last-child,
+.tl-content,
+.pub-item,
+.project-card {
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  border-width: 0 0 1px;
+}
+
+.about-grid > div:last-child {
+  align-self: start;
+  padding: 1.6rem 1.6rem 1.8rem;
+  border-radius: 18px;
+}
+
+.about-grid .tag-row {
+  margin-top: 0;
+}
+
+.tl-content {
+  padding: 1.5rem 1.7rem;
+  border-radius: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pub-item {
+  border-left: 3px solid var(--coral);
+  border-radius: 6px 18px 18px 6px;
+}
+
+.project-card {
+  padding: 2.6rem 2.6rem 2.4rem;
+  margin-bottom: 2rem;
+  border-radius: 22px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.75s ease;
+}
+
+.project-card:last-child {
+  border-bottom: 1px solid var(--glass-edge);
+}
+
+.project-index {
+  top: 1.6rem;
+  right: 2rem;
+}
+
+.tl-content:hover,
+.project-card.visible:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 16px 50px rgba(90, 50, 30, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+}
+
+@media (max-width: 700px) {
+  /* Phones: keep the colour backdrop still and lighter to draw. */
+  body::before,
+  body::after {
+    animation: none;
+    filter: blur(50px);
+  }
+
+  .project-card {
+    padding: 1.8rem 1.4rem;
+  }
+
+  .tl-content {
+    padding: 1.2rem 1.3rem;
+  }
+}
+
+/* Older browsers without backdrop blur: use a more opaque panel so text stays readable. */
+@supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  :root {
+    --glass-bg: rgba(253, 248, 242, 0.88);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::before,
+  body::after {
+    animation: none;
+  }
+
+  .tl-content,
+  .project-card {
+    transition: none;
+  }
+}

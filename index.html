@@ -14,9 +14,20 @@
     rel="stylesheet" />
 
   <link rel="stylesheet" href="assets/css/home.css" />
+  <link rel="stylesheet" href="assets/css/glass.css" />
+  <link rel="stylesheet" href="assets/css/intro.css" />
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+      }
+    }
+  </script>
+  <script type="module" src="assets/js/intro.js"></script>
 </head>
 
-<body>
+<body class="has-intro">
 
   <nav>
     <span class="nav-wordmark">Kelsey</span>
@@ -28,14 +39,18 @@
     </ul>
   </nav>
 
-  <header class="hero">
-    <p class="hero-kicker">Data Scientist · AI Fairness · Montreal</p>
-    <h1 class="hero-name">Kelsey</h1>
-    <p class="hero-name-zh">王佳宜</p>
-    <p class="hero-bio">
-      Data Scientist at <strong>Plus Company</strong>.
-      M.Sc. from <strong>McGill University</strong> (Mila).
-    </p>
+  <header class="intro" id="top">
+    <div class="intro-stage">
+      <canvas class="intro-canvas" aria-hidden="true"></canvas>
+      <p class="intro-kicker">Data Scientist · AI Fairness · Montreal</p>
+      <h1 class="intro-name">Kelsey</h1>
+      <p class="intro-name-zh">王佳宜</p>
+      <p class="intro-statement">
+        Data Scientist at <em>Plus Company</em>. M.Sc. from McGill University.
+        <small>Mila · AI Fairness · Montreal</small>
+      </p>
+      <p class="intro-hint" aria-hidden="true">Scroll</p>
+    </div>
   </header>
 
   <main class="page">
