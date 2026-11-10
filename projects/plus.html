@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plus Company Projects — Kelsey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;1,9..40,300&family=JetBrains+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
+
+  <link rel="stylesheet" href="../assets/css/projects.css" />
+</head>
+
+<body>
+
+  <nav>
+    <a href="../index.html" class="nav-back">← Back</a>
+    <span class="nav-wordmark">Kelsey</span>
+  </nav>
+
+  <header class="page-header">
+    <p class="header-kicker">Work experience · 02</p>
+    <h1 class="header-title">Plus Company —<br /><em>Selected projects</em></h1>
+    <div class="header-meta-row">
+      <div class="header-meta-item">
+        <span class="meta-label">Role</span>
+        <span class="meta-value">Data Scientist</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="header-meta-item">
+        <span class="meta-label">Period</span>
+        <span class="meta-value">Mar 2026 — Present</span>
+      </div>
+      <div class="meta-divider"></div>
+      <div class="header-meta-item">
+        <span class="meta-label">Location</span>
+        <span class="meta-value">Montreal, Canada</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="project-list">
+
+    <!-- Project 1 -->
+    <article class="project-card reveal">
+      <span class="project-index" aria-hidden="true">01</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">Synthetic Audience Personas</h2>
+          <span class="card-tag">LLM · Data Product</span>
+        </div>
+        <p class="card-context">Data Scientist &nbsp;·&nbsp; Internal product</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          AI personas grounded in a synthetic national population, which marketing teams can question in plain language to explore how an audience thinks and behaves.
+        </p>
+        <ul class="card-highlights">
+          <li>Extended the product to new national markets, building the statistical tables that link thousands of survey questions to each other.</li>
+          <li>Added consistency rules so a persona never holds answers that contradict each other.</li>
+          <li>Validated each release by comparing persona outputs before and after the change.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">BigQuery</span>
+        <span class="stack-pill">Cloud Run</span>
+        <span class="stack-pill">Gemini</span>
+        <span class="stack-pill">Streamlit</span>
+      </div>
+    </article>
+
+    <!-- Project 2 -->
+    <article class="project-card reveal">
+      <span class="project-index" aria-hidden="true">02</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">Audience Query Builder</h2>
+          <span class="card-tag">GCP · Full-stack</span>
+        </div>
+        <p class="card-context">Data Scientist &nbsp;·&nbsp; Internal product</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          Self-serve tool for defining an audience from survey answers and sizing it against the synthetic population, feeding the persona product above.
+        </p>
+        <ul class="card-highlights">
+          <li>Shipped back-end and front-end changes to support new markets end to end.</li>
+          <li>Worked on sign-in checks and usage reporting for the service.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">JavaScript</span>
+        <span class="stack-pill">BigQuery</span>
+        <span class="stack-pill">Firestore</span>
+        <span class="stack-pill">Cloud Run</span>
+      </div>
+    </article>
+
+    <!-- Project 3 -->
+    <article class="project-card reveal">
+      <span class="project-index" aria-hidden="true">03</span>
+      <div class="card-header">
+        <div class="card-name-row">
+          <h2 class="card-name">Data Fusion & Segmentation Research</h2>
+          <span class="card-tag">ML · Research</span>
+        </div>
+        <p class="card-context">Data Scientist &nbsp;·&nbsp; Applied research</p>
+      </div>
+      <div class="card-body">
+        <p class="card-desc">
+          Experiments on combining first-party data with a synthetic population and clustering the result into audience segments.
+        </p>
+        <ul class="card-highlights">
+          <li>Ran clustering and cross-tabulation experiments to test whether fused data produces usable segments.</li>
+          <li>Wrote the experiment report and product recommendation for stakeholders.</li>
+        </ul>
+      </div>
+      <div class="card-stack">
+        <span class="stack-pill">Python</span>
+        <span class="stack-pill">Clustering</span>
+        <span class="stack-pill">pandas</span>
+        <span class="stack-pill">BigQuery</span>
+      </div>
+    </article>
+
+  </main>
+
+  <footer>
+    <span class="footer-left">Kelsey · 王佳宜</span>
+    <a href="../index.html" class="footer-back">← Back to home</a>
+  </footer>
+
+  <script src="../assets/js/reveal.js" defer></script>
+
+</body>
+
+</html>
