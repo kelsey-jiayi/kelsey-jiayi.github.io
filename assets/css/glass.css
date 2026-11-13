@@ -1,47 +1,61 @@
-/* Glass layer: a slow colour backdrop behind the page, and frosted panels on top.
-   Loaded after the page stylesheet, so removing this file restores the flat look. */
+/* Pearl surface and glass layer, shared by every page: a still, faintly iridescent
+   sheen behind the page, tinted lettering, and frosted panels on top.
+   Loaded after the page stylesheet. */
 
 :root {
-  --glass-bg: rgba(255, 255, 255, 0.38);
-  --glass-edge: rgba(255, 255, 255, 0.7);
-  --glass-shadow: 0 10px 40px rgba(90, 50, 30, 0.09);
+  --glass-bg: rgba(255, 255, 255, 0.44);
+  --glass-edge: rgba(255, 255, 255, 0.9);
+  --glass-shadow: 0 10px 40px rgba(70, 50, 110, 0.12);
   --glass-blur: blur(20px) saturate(170%);
+
+  /* The sheen and the lettering tint exist twice: as CSS gradients for the page, and
+     as "colour position" lists that assets/js/intro.js reads to paint the same thing
+     behind the glass ring. Keep each pair in step. */
+  --sheen: linear-gradient(115deg, #f1e3ec 0%, #e2eef8 22%, #f8f2e4 44%, #e0f2ec 63%, #ece3f7 82%, #f6e9ee 100%);
+  --sheen-stops: "#f1e3ec 0, #e2eef8 0.22, #f8f2e4 0.44, #e0f2ec 0.63, #ece3f7 0.82, #f6e9ee 1";
+  --ink-sweep: linear-gradient(170deg, #6a5a8e 0%, #1c1a22 34%, #16202a 56%, #3f6f78 82%, #2a2238 100%);
+  --ink-stops: "#6a5a8e 0, #1c1a22 0.34, #16202a 0.56, #3f6f78 0.82, #2a2238 1";
 }
 
-/* ── Backdrop: two drifting layers of soft colour ── */
+/* ── Backdrop: the sheen, with a fine horizontal grain over it ── */
 body::before,
 body::after {
   content: '';
   position: fixed;
-  inset: -25%;
+  inset: 0;
   z-index: -1;
   pointer-events: none;
-  filter: blur(70px);
-  will-change: transform;
 }
 
 body::before {
-  background:
-    radial-gradient(circle at 18% 22%, rgba(200, 86, 56, 0.34), transparent 34%),
-    radial-gradient(circle at 80% 68%, rgba(77, 124, 111, 0.32), transparent 36%);
-  animation: drift-a 38s ease-in-out infinite alternate;
+  background: var(--sheen);
 }
 
 body::after {
-  background:
-    radial-gradient(circle at 76% 16%, rgba(240, 190, 90, 0.36), transparent 32%),
-    radial-gradient(circle at 26% 80%, rgba(140, 110, 210, 0.26), transparent 34%);
-  animation: drift-b 52s ease-in-out infinite alternate;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='600'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.85' numOctaves='2' seed='4'/%3E%3CfeColorMatrix values='0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0 0.5  0 0 0 0.9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+  opacity: 0.08;
+  mix-blend-mode: multiply;
 }
 
-@keyframes drift-a {
-  from { transform: translate3d(-4%, -3%, 0) rotate(0deg) scale(1); }
-  to   { transform: translate3d(6%, 5%, 0) rotate(14deg) scale(1.12); }
+/* ── Lettering: a violet-to-teal sweep clipped to the large headings ── */
+.intro-name,
+.intro-statement,
+.block-title,
+.header-title {
+  background: var(--ink-sweep);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-@keyframes drift-b {
-  from { transform: translate3d(5%, 4%, 0) rotate(0deg) scale(1.08); }
-  to   { transform: translate3d(-6%, -5%, 0) rotate(-12deg) scale(1); }
+.intro-statement em,
+.block-title em,
+.header-title em {
+  -webkit-text-fill-color: var(--accent);
+}
+
+.intro-statement small {
+  -webkit-text-fill-color: var(--text-light);
 }
 
 /* ── Frosted panels ── */
@@ -81,7 +95,7 @@ nav {
 }
 
 .pub-item {
-  border-left: 3px solid var(--coral);
+  border-left: 3px solid var(--accent);
   border-radius: 6px 18px 18px 6px;
 }
 
@@ -104,17 +118,10 @@ nav {
 .tl-content:hover,
 .project-card.visible:hover {
   transform: translateY(-3px);
-  box-shadow: 0 16px 50px rgba(90, 50, 30, 0.13), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  box-shadow: 0 16px 50px rgba(70, 50, 110, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 
 @media (max-width: 700px) {
-  /* Phones: keep the colour backdrop still and lighter to draw. */
-  body::before,
-  body::after {
-    animation: none;
-    filter: blur(50px);
-  }
-
   .project-card {
     padding: 1.8rem 1.4rem;
   }
@@ -127,16 +134,11 @@ nav {
 /* Older browsers without backdrop blur: use a more opaque panel so text stays readable. */
 @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
   :root {
-    --glass-bg: rgba(253, 248, 242, 0.88);
+    --glass-bg: rgba(246, 243, 248, 0.9);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body::before,
-  body::after {
-    animation: none;
-  }
-
   .tl-content,
   .project-card {
     transition: none;

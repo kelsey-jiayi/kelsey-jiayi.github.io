@@ -253,49 +253,67 @@ function start() {
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
   gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
 
+  // Reads a "colour position, colour position" list from a CSS variable.
+  function readStops(css, name) {
+    const raw = css.getPropertyValue(name).trim().replace(/^["']|["']$/g, '');
+    if (!raw) return null;
+    return raw.split(',').map((part) => {
+      const [colour, position] = part.trim().split(/\s+/);
+      return [parseFloat(position), colour];
+    });
+  }
+
   function paintPaper() {
     const W = paper.width;
     const H = paper.height;
     const ctx = paper.getContext('2d');
     const css = getComputedStyle(root);
+    const display = '"Playfair Display", serif';
 
-    ctx.fillStyle = css.getPropertyValue('--bg').trim() || '#fdf8f2';
+    ctx.fillStyle = css.getPropertyValue('--bg').trim() || '#f1eef2';
     ctx.fillRect(0, 0, W, H);
 
-    // Soft colour patches so the glass has something to bend besides the letters.
-    const patches = [
-      [0.16, 0.2, 'rgba(200, 86, 56, 0.30)'],
-      [0.84, 0.74, 'rgba(77, 124, 111, 0.28)'],
-      [0.8, 0.14, 'rgba(240, 190, 90, 0.32)'],
-      [0.2, 0.84, 'rgba(140, 110, 210, 0.22)'],
-    ];
-    const reach = Math.max(W, H) * 0.5;
-    for (const [x, y, colour] of patches) {
-      const g = ctx.createRadialGradient(x * W, y * H, 0, x * W, y * H, reach);
-      g.addColorStop(0, colour);
-      g.addColorStop(1, 'rgba(255, 255, 255, 0)');
+    // The same angled sheen as the page background (115 degrees).
+    const sheen = readStops(css, '--sheen-stops');
+    if (sheen) {
+      const angle = (115 * Math.PI) / 180;
+      const dx = Math.sin(angle);
+      const dy = -Math.cos(angle);
+      const half = (Math.abs(W * dx) + Math.abs(H * dy)) / 2;
+      const g = ctx.createLinearGradient(W / 2 - dx * half, H / 2 - dy * half, W / 2 + dx * half, H / 2 + dy * half);
+      for (const [position, colour] of sheen) g.addColorStop(position, colour);
       ctx.fillStyle = g;
       ctx.fillRect(0, 0, W, H);
     }
 
-    // Size the name to fill most of the width, whatever the screen shape.
+    // Size the name to fill most of the width, whatever the screen shape shape.
     let size = Math.min(W * 0.3, H * 0.3);
     ctx.textAlign = 'center';
     ctx.textBaseline = 'alphabetic';
-    ctx.fillStyle = css.getPropertyValue('--text').trim() || '#1a1210';
-    ctx.font = `400 ${size}px "Playfair Display", serif`;
+    ctx.font = `400 ${size}px ${display}`;
     const widest = W * 0.8;
     const measured = ctx.measureText('Kelsey').width;
     if (measured > widest) size *= widest / measured;
-    ctx.font = `400 ${size}px "Playfair Display", serif`;
+    ctx.font = `400 ${size}px ${display}`;
     if ('letterSpacing' in ctx) ctx.letterSpacing = `${-size * 0.03}px`;
-    ctx.fillText('Kelsey', W / 2, H * 0.5 + size * 0.22);
+    const baseline = H * 0.5 + size * 0.22;
+
+    const sweep = readStops(css, '--ink-stops');
+    if (sweep) {
+      // The lettering tint: violet at the top of the letters, teal toward the bottom.
+      const g = ctx.createLinearGradient(0, baseline - size * 0.78, 0, baseline + size * 0.22);
+      for (const [position, colour] of sweep) g.addColorStop(position, colour);
+      ctx.fillStyle = g;
+    } else {
+      ctx.fillStyle = css.getPropertyValue('--text').trim() || '#1c1a22';
+    }
+    ctx.fillText('Kelsey', W / 2, baseline);
 
     const small = Math.max(size * 0.13, H * 0.018);
-    ctx.fillStyle = css.getPropertyValue('--coral').trim() || '#c85638';
+    ctx.fillStyle = css.getPropertyValue('--accent').trim() || '#6d57a3';
     ctx.font = `italic 400 ${small}px "Playfair Display", "Songti SC", serif`;
     if ('letterSpacing' in ctx) ctx.letterSpacing = `${small * 0.5}px`;
-    ctx.fillText('王佳宜', W / 2 + small * 0.25, H * 0.5 + size * 0.22 + small * 2.3);
+    ctx.fillText('王佳宜', W / 2 + small * 0.25, baseline + small * 2.3);
 
     gl.bindTexture(gl.TEXTURE_2D, paperTexture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, paper);

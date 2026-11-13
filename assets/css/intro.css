@@ -59,7 +59,7 @@ body.has-intro nav {
   font-size: clamp(1.2rem, 2.6vw, 2rem);
   letter-spacing: 0.5em;
   margin: 1.4rem 0 0 0.5em;
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .intro-statement {
@@ -75,7 +75,7 @@ body.has-intro nav {
 
 .intro-statement em {
   font-style: italic;
-  color: var(--coral);
+  color: var(--accent);
 }
 
 .intro-statement small {
@@ -107,7 +107,7 @@ body.has-intro nav {
   width: 1px;
   height: 34px;
   margin: 0.8rem auto 0;
-  background: var(--coral);
+  background: var(--accent);
   transform-origin: top;
   animation: hint-line 2.2s ease-in-out infinite;
 }
